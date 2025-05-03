@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup - Lie In Root</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --cyan: #06b6d4;
+      --gold: #fbbf24;
+      --dark: #1f2937;
+      --light-dark: #2d3748;
+      --light-bg: #f3f4f6;
+      --light-text: #333;
+      --light-card: white;
+    }
+
+    .signup-card {
+      position: relative;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      margin: 5rem auto;
+    }
+
+    .form-input:focus, .form-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
+    }
+
+    .form-button {
+      background-color: var(--cyan);
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .form-button:hover {
+      background-color: var(--gold);
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body class="bg-[var(--dark)] text-white font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-[var(--dark)] text-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-[var(--cyan)]">Lie In Root</h1>
+    <div class="space-x-4">
+      <a href="index.html" class="hover:text-[var(--cyan)]">Home</a>
+      <a href="reviews.html" class="hover:text-[var(--cyan)]">Reviews</a>
+      <a href="submit.html" class="hover:text-[var(--cyan)]">Submit</a>
+      <a href="login.html" class="hover:text-[var(--cyan)]">Login</a>
+      <a href="signup.html" class="text-[var(--cyan)] font-semibold">Signup</a>
+    </div>
+  </nav>
+
+  <!-- Signup Form -->
+  <section class="max-w-3xl mx-auto p-6 mt-6">
+    <div class="signup-card">
+      <h2 class="text-3xl font-bold text-[var(--cyan)] text-center">Create Account</h2>
+
+      <form id="signupForm" class="mt-6">
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-semibold text-white">Username</label>
+          <input type="text" id="username" name="username" class="form-input w-full p-3 mt-1 border border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-[var(--cyan)]" placeholder="Enter your username" required />
+        </div>
+
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-semibold text-white">Email</label>
+          <input type="email" id="email" name="email" class="form-input w-full p-3 mt-1 border border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-[var(--cyan)]" placeholder="Enter your email" required />
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-semibold text-white">Password</label>
+          <input type="password" id="password" name="password" class="form-input w-full p-3 mt-1 border border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-[var(--cyan)]" placeholder="Enter your password" required />
+        </div>
+
+        <div class="mb-4">
+          <label for="confirmPassword" class="block text-sm font-semibold text-white">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-input w-full p-3 mt-1 border border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-[var(--cyan)]" placeholder="Confirm your password" required />
+        </div>
+
+        <div class="mb-4">
+          <button type="submit" class="form-button w-full">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- JavaScript for Form Handling -->
+  <script>
+    const signupForm = document.getElementById('signupForm');
+
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      // Mock signup logic: Just display the entered details in the console
+      console.log({ username, email, password });
+
+      // You can add real signup logic here (e.g., API call to save user data)
+
+      // For now, show a success message
+      alert('Signup successful! Redirecting...');
+
+      // Redirect to the login page (optional)
+      // window.location.href = "login.html";  // Uncomment to redirect after signup
+    });
+  </script>
+
+</body>
+</html>

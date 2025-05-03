@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Lie In Root</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --cyan: #06b6d4;
+      --gold: #fbbf24;
+      --dark: #1f2937;
+      --light-dark: #2d3748;
+      --light-bg: #f3f4f6;
+      --light-text: #333;
+      --light-card: white;
+    }
+
+    /* 3D effect on login form */
+    .login-card {
+      position: relative;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 400px;
+      margin: 5rem auto;
+    }
+
+    .login-card:hover {
+      transform: translateY(-5px) rotate(2deg);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .form-input:focus, .form-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
+    }
+
+    .form-button {
+      background-color: var(--cyan);
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .form-button:hover {
+      background-color: var(--gold);
+      transform: scale(1.05);
+    }
+
+    /* Light Mode */
+    body.light-mode {
+      background-color: var(--light-bg);
+      color: var(--light-text);
+    }
+
+    body.light-mode .login-card {
+      background-color: var(--light-card);
+    }
+
+    body.light-mode nav {
+      background-color: var(--light-bg);
+    }
+
+    body.light-mode nav h1 {
+      color: var(--cyan);
+    }
+
+    body.light-mode nav a {
+      color: var(--light-text);
+    }
+
+    body.light-mode nav a:hover {
+      color: var(--cyan);
+    }
+
+    /* Navbar Style */
+    nav {
+      background-color: var(--dark);
+    }
+
+    nav h1 {
+      color: var(--cyan);
+    }
+
+    nav a {
+      color: white;
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+    }
+
+    /* Toggle Button Style */
+    .toggle-btn {
+      cursor: pointer;
+      padding: 0.5rem;
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      transform: scale(1.1);
+      color: var(--cyan);
+    }
+
+  </style>
+</head>
+<body class="bg-[var(--dark)] text-white font-sans">
+
+  <!-- Navbar with Dark Mode Toggle -->
+  <nav class="bg-[var(--dark)] text-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-[var(--cyan)]">Lie In Root</h1>
+    <div class="space-x-4">
+      <a href="index.html" class="hover:text-[var(--cyan)]">Home</a>
+      <a href="reviews.html" class="hover:text-[var(--cyan)]">Reviews</a>
+      <a href="submit.html" class="hover:text-[var(--cyan)]">Submit</a>
+      <a href="login.html" class="text-[var(--cyan)] font-semibold">Login</a>
+      <!-- Dark Mode Toggle Button -->
+      <button class="toggle-btn" id="darkModeToggle">
+        🌙
+      </button>
+    </div>
+  </nav>
+
+  <!-- Login Form -->
+  <section class="max-w-3xl mx-auto p-6 mt-6">
+    <div class="login-card">
+      <h2 class="text-3xl font-bold text-[var(--cyan)] text-center">Login</h2>
+
+      <form id="loginForm" class="mt-6">
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-semibold text-white">Email or Username</label>
+          <input type="text" id="email" name="email" class="form-input w-full p-3 mt-1 border border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-[var(--cyan)]" placeholder="Enter your email or username" required />
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-semibold text-white">Password</label>
+          <input type="password" id="password" name="password" class="form-input w-full p-3 mt-1 border border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-[var(--cyan)]" placeholder="Enter your password" required />
+        </div>
+
+        <div class="mb-4">
+          <button type="submit" class="form-button w-full">Login</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- JavaScript for Form Handling and Dark Mode Toggle -->
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    // Check if the user has a saved theme in localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+
+    // Toggle dark/light mode and save preference in localStorage
+    darkModeToggle.addEventListener('click', function () {
+      if (document.body.classList.contains('light-mode')) {
+        document.body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+        darkModeToggle.innerHTML = '🌙';
+      } else {
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+        darkModeToggle.innerHTML = '🌞';
+      }
+    });
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Mock login logic: Just display the entered details in the console
+      console.log({ email, password });
+
+      // You can add real authentication logic here
+
+      // For now, show a success message
+      alert('Login successful! Redirecting...');
+      
+      // Redirect to another page after login (optional)
+      // window.location.href = "dashboard.html";  // Uncomment to redirect after login
+    });
+  </script>
+
+</body>
+</html>

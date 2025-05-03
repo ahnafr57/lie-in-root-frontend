@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews - Lie In Root</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --cyan: #06b6d4;
+      --gold: #fbbf24;
+      --dark: #1f2937;
+    }
+
+    /* 3D effect for review cards */
+    .review-card {
+      position: relative;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 1rem;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px) rotate(2deg);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .review-card .upvote-btn:hover {
+      background-color: #fbbf24;
+      transform: scale(1.1);
+      transition: transform 0.2s ease;
+    }
+
+    .review-card .upvote-btn {
+      background-color: #06b6d4;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-[var(--dark)] text-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-[var(--cyan)]">Lie In Root</h1>
+    <div class="space-x-4">
+      <a href="index.html" class="hover:text-[var(--cyan)]">Home</a>
+      <a href="reviews.html" class="text-[var(--cyan)] font-semibold">Reviews</a>
+      <a href="submit.html" class="hover:text-[var(--cyan)]">Submit</a>
+      <a href="login.html" class="hover:text-[var(--cyan)]">Login</a>
+    </div>
+  </nav>
+
+  <!-- Reviews Section -->
+  <section class="max-w-4xl mx-auto p-6 mt-6">
+    <h2 class="text-3xl font-bold text-[var(--dark)]">Latest Reviews</h2>
+
+    <!-- Sorting Options -->
+    <div class="mt-4">
+      <label for="sortBy" class="text-lg text-[var(--dark)]">Sort by: </label>
+      <select id="sortBy" class="p-2 border border-gray-300 rounded-md">
+        <option value="upvotes">Upvotes</option>
+        <option value="rating">Rating</option>
+      </select>
+    </div>
+
+    <!-- Sample Review Cards (Dynamic Rendering) -->
+    <div id="reviewsContainer" class="mt-6">
+      <!-- Reviews will be injected here -->
+    </div>
+  </section>
+
+  <!-- JavaScript for Displaying and Upvoting Reviews -->
+  <script>
+    // Sample reviews array (replace this with real data in the future)
+    const reviews = [
+      {
+        bookTitle: "The Great Gatsby",
+        author: "F. Scott Fitzgerald",
+        reviewText: "An amazing novel that explores the American Dream and its disillusionment. Highly recommend it!",
+        rating: 5,
+        upvotes: 12
+      },
+      {
+        bookTitle: "1984",
+        author: "George Orwell",
+        reviewText: "A haunting dystopian novel that remains relevant even today. A must-read for anyone who values freedom.",
+        rating: 4,
+        upvotes: 8
+      },
+      {
+        bookTitle: "To Kill a Mockingbird",
+        author: "Harper Lee",
+        reviewText: "A powerful story about racism, justice, and compassion in the deep South. One of the greatest American novels.",
+        rating: 5,
+        upvotes: 15
+      }
+    ];
+
+    const reviewsContainer = document.getElementById("reviewsContainer");
+    const sortBySelect = document.getElementById("sortBy");
+
+    // Function to generate review cards
+    function generateReviewCard(review) {
+      return `
+        <div class="review-card">
+          <h3 class="text-xl font-semibold text-[var(--dark)]">${review.bookTitle}</h3>
+          <p class="text-sm text-[var(--dark)]">by ${review.author}</p>
+          <p class="text-md mt-2">${review.reviewText}</p>
+          <div class="flex items-center mt-4">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-gray-600 ml-2">${'★'.repeat(review.rating)}</span>
+          </div>
+          <div class="flex justify-between items-center mt-4">
+            <button class="upvote-btn" onclick="upvoteReview(${reviews.indexOf(review)})">
+              Upvote (${review.upvotes})
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Function to handle upvote
+    function upvoteReview(index) {
+      reviews[index].upvotes++;
+      renderReviews(); // Re-render the reviews after upvoting
+    }
+
+    // Function to render all reviews
+    function renderReviews() {
+      reviewsContainer.innerHTML = reviews.map(generateReviewCard).join('');
+    }
+
+    // Function to sort reviews based on selected option
+    function sortReviews() {
+      const sortBy = sortBySelect.value;
+      if (sortBy === "upvotes") {
+        reviews.sort((a, b) => b.upvotes - a.upvotes); // Sort by upvotes
+      } else if (sortBy === "rating") {
+        reviews.sort((a, b) => b.rating - a.rating); // Sort by rating
+      }
+      renderReviews();
+    }
+
+    // Event listener to handle sorting change
+    sortBySelect.addEventListener("change", sortReviews);
+
+    // Initial render
+    renderReviews();
+  </script>
+
+</body>
+</html>
