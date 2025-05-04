@@ -7,9 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
-      --cyan: #06b6d4;
-      --gold: #fbbf24;
-      --dark: #1f2937;
+      --brown: #4B3621;
+      --green: #6B8E23;
+      --sepia: #704214;
+      --cream: #f5f0e1;
+      --text-dark: #2e2e2e;
     }
 
     /* 3D effect for review cards */
@@ -35,27 +37,102 @@
     }
 
     .review-card .upvote-btn {
-      background-color: #06b6d4;
+      background-color: #6B8E23; /* Updated to green */
       color: white;
       padding: 10px 15px;
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
+
+    /* Rain Effect */
+    .rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .raindrop {
+      position: absolute;
+      top: -10px;
+      width: 2px;
+      height: 10px;
+      background-color: var(--brown); /* Updated color to brown */
+      animation: rain 1.5s linear infinite;
+      opacity: 0.2; /* Reduced opacity */
+    }
+
+    @keyframes rain {
+      to {
+        transform: translate(200px, 100vh); /* Diagonal direction from top-right to bottom-left */
+      }
+    }
+
+    /* Adjusting the amount of raindrops */
+    .raindrop:nth-child(odd) {
+      animation-duration: 1.8s;
+      left: 10%;
+    }
+
+    .raindrop:nth-child(even) {
+      animation-duration: 2s;
+      left: 50%;
+    }
+
+    /* Add more raindrops */
+    .raindrop:nth-child(3) { left: 90%; animation-duration: 1.6s; }
+    .raindrop:nth-child(4) { left: 30%; animation-duration: 1.7s; }
+    .raindrop:nth-child(5) { left: 60%; animation-duration: 1.5s; }
+    .raindrop:nth-child(6) { left: 20%; animation-duration: 2.1s; }
+    .raindrop:nth-child(7) { left: 70%; animation-duration: 1.8s; }
+    .raindrop:nth-child(8) { left: 40%; animation-duration: 1.9s; }
+    .raindrop:nth-child(9) { left: 80%; animation-duration: 2s; }
+    .raindrop:nth-child(10) { left: 15%; animation-duration: 1.6s; }
+
+    /* Adjusting the rain opacity to avoid interference with content */
+    .raindrop {
+      opacity: 0.15;
+    }
   </style>
 </head>
-<body class="bg-white text-gray-800 font-sans">
+<body class="bg-[var(--cream)] text-[var(--text-dark)] font-sans">
+
+  <!-- Rain Effect -->
+  <div class="rain">
+    <!-- Generate a number of raindrops -->
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+    <div class="raindrop"></div>
+  </div>
 
   <!-- Navbar -->
-  <nav class="bg-[var(--dark)] text-white shadow-md p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-[var(--cyan)]">Lay In Root</h1>
+  <nav class="bg-[var(--brown)] text-white shadow-md p-4 flex justify-between items-center">
+    <img src="https://media.discordapp.net/attachments/1368533585199632445/1368551577132077096/c0198911-119e-47c0-91f6-edb66ebe897d.jpg?ex=6818a27a&is=681750fa&hm=11384c24a03070251df9fcc6822391f9dff6cec311e6095ca8ce8e6c6e83ac87&=&format=webp&width=1240&height=789" alt="Lay In Root Logo" class="h-12"> 
     <div class="space-x-4">
-      <a href="index.html" class="hover:text-[var(--cyan)]">Home</a>
-      <a href="reviews.html" class="text-[var(--cyan)] font-semibold">Reviews</a>
-      <a href="submit.html" class="hover:text-[var(--cyan)]">Submit</a>
-      <a href="login.html" class="hover:text-[var(--cyan)]">Login</a>
+      <a href="index.html" class="hover:text-[var(--green)]">Home</a>
+      <a href="reviews.html" class="hover:text-[var(--green)]">Reviews</a>
+      <a href="submit.html" class="hover:text-[var(--green)]">Submit</a>
+      <a href="login.html" class="text-[var(--green)] font-semibold">Login</a>
     </div>
   </nav>
+  
 
   <!-- Reviews Section -->
   <section class="max-w-4xl mx-auto p-6 mt-6">
@@ -80,80 +157,85 @@
   <script>
     // Sample reviews array (replace this with real data in the future)
     const reviews = [
-      {
-        bookTitle: "The Great Gatsby",
-        author: "F. Scott Fitzgerald",
-        reviewText: "An amazing novel that explores the American Dream and its disillusionment. Highly recommend it!",
-        rating: 5,
-        upvotes: 12
-      },
-      {
-        bookTitle: "1984",
-        author: "George Orwell",
-        reviewText: "A haunting dystopian novel that remains relevant even today. A must-read for anyone who values freedom.",
-        rating: 4,
-        upvotes: 8
-      },
-      {
-        bookTitle: "To Kill a Mockingbird",
-        author: "Harper Lee",
-        reviewText: "A powerful story about racism, justice, and compassion in the deep South. One of the greatest American novels.",
-        rating: 5,
-        upvotes: 15
-      }
-    ];
+  { title: "The Midnight Library", author: "Matt Haig", review: "A thought-provoking journey through regret and possibility.", rating: "★★★★★", upvotes: 42 },
+  { title: "Project Hail Mary", author: "Andy Weir", review: "A scientifically satisfying and emotionally gripping read.", rating: "★★★★☆", upvotes: 39 },
+  { title: "Solo Leveling", author: "Chugong", review: "A thrilling story of a weak hunter's rise to power.", rating: "★★★★★", upvotes: 248 },
+  { title: "The God of High School", author: "Yongje Park", review: "Epic martial arts battles and high school competition.", rating: "★★★★☆", upvotes: 182 },
+  { title: "Tower of God", author: "SIU", review: "A mysterious tower with hidden secrets and powerful foes.", rating: "★★★★★", upvotes: 235 },
+  { title: "Noblesse", author: "Son Jeho", review: "A vampire's quest to protect his friends and humanity.", rating: "★★★★☆", upvotes: 170 },
+  { title: "True Beauty", author: "Yaongyi", review: "A girl hides her true beauty behind makeup and faces a complicated love triangle.", rating: "★★★★★", upvotes: 204 },
+  { title: "The Breaker", author: "Jeon Geuk-jin", review: "A tale of martial arts and revenge with an underdog protagonist.", rating: "★★★★☆", upvotes: 158 },
+  { title: "Bastard", author: "Hwang Youngchan", review: "A dark thriller about a boy caught in a deadly family secret.", rating: "★★★★★", upvotes: 211 },
+  { title: "I Am the Sorcerer King", author: "Decaspell", review: "A student gains overwhelming powers and embarks on a journey for revenge.", rating: "★★★★☆", upvotes: 145 },
+  { title: "Farming Life in Another World", author: "Kikuta Hiroshi", review: "A light-hearted and quirky manhwa about farming in another world.", rating: "★★★★☆", upvotes: 132 },
+  { title: "A Returner's Magic Should Be Special", author: "Sun-Wook Jeon", review: "A powerful magician returns to the past to prevent a devastating war.", rating: "★★★★★", upvotes: 190 },
+  { title: "Omniscient Reader’s Viewpoint", author: "Sing Shong", review: "A man discovers he is the protagonist in a dangerous fantasy world.", rating: "★★★★★", upvotes: 222 },
+  { title: "The Villainess Reverses the Hourglass", author: "Sunkyu", review: "A woman seeks revenge in a world where time can be rewound.", rating: "★★★★☆", upvotes: 174 },
+  { title: "The Legendary Moonlight Sculptor", author: "Nam Heesung", review: "A player immerses himself in a VRMMO to carve out his destiny.", rating: "★★★★☆", upvotes: 156 },
+  { title: "Killing Stalking", author: "Koogi", review: "A psychological thriller filled with intense, disturbing moments.", rating: "★★★★★", upvotes: 298 },
+  { title: "Shaman Warrior", author: "Shin Dong-Hyun", review: "A warrior with supernatural abilities embarks on a path of redemption.", rating: "★★★★☆", upvotes: 130 },
+  { title: "Sisyphus", author: "Yun Hyeon-Seok", review: "A man attempts to defy fate in an endless loop of struggles.", rating: "★★★★★", upvotes: 225 },
+  { title: "God of Blackfield", author: "Yun Hyunseok", review: "A military man gets a second chance at life in a dangerous world.", rating: "★★★★☆", upvotes: 160 },
+  { title: "The Scholar's Reincarnation", author: "Cheongcho", review: "A skilled martial artist is reborn as a scholar in a new world.", rating: "★★★★☆", upvotes: 139 }
+];
 
-    const reviewsContainer = document.getElementById("reviewsContainer");
-    const sortBySelect = document.getElementById("sortBy");
 
-    // Function to generate review cards
-    function generateReviewCard(review) {
-      return `
-        <div class="review-card">
-          <h3 class="text-xl font-semibold text-[var(--dark)]">${review.bookTitle}</h3>
-          <p class="text-sm text-[var(--dark)]">by ${review.author}</p>
-          <p class="text-md mt-2">${review.reviewText}</p>
-          <div class="flex items-center mt-4">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-gray-600 ml-2">${'★'.repeat(review.rating)}</span>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <button class="upvote-btn" onclick="upvoteReview(${reviews.indexOf(review)})">
-              Upvote (${review.upvotes})
-            </button>
-          </div>
-        </div>
+    const reviewsContainer = document.getElementById('reviewsContainer');
+
+    // Render reviews dynamically
+    reviews.forEach(review => {
+      const reviewCard = document.createElement('div');
+      reviewCard.classList.add('review-card');
+
+      reviewCard.innerHTML = `
+        <h3 class="text-xl font-bold text-[var(--dark)]">${review.title}</h3>
+        <p class="text-sm text-gray-600 mb-2">by ${review.author}</p>
+        <p class="text-gray-700">${review.review}</p>
+        <div class="mt-2 text-[var(--sepia)]">${review.rating}</div>
+        <button class="upvote-btn mt-4">Upvote (${review.upvotes})</button>
       `;
-    }
 
-    // Function to handle upvote
-    function upvoteReview(index) {
-      reviews[index].upvotes++;
-      renderReviews(); // Re-render the reviews after upvoting
-    }
-
-    // Function to render all reviews
-    function renderReviews() {
-      reviewsContainer.innerHTML = reviews.map(generateReviewCard).join('');
-    }
-
-    // Function to sort reviews based on selected option
-    function sortReviews() {
-      const sortBy = sortBySelect.value;
-      if (sortBy === "upvotes") {
-        reviews.sort((a, b) => b.upvotes - a.upvotes); // Sort by upvotes
-      } else if (sortBy === "rating") {
-        reviews.sort((a, b) => b.rating - a.rating); // Sort by rating
-      }
-      renderReviews();
-    }
-
-    // Event listener to handle sorting change
-    sortBySelect.addEventListener("change", sortReviews);
-
-    // Initial render
-    renderReviews();
+      reviewsContainer.appendChild(reviewCard);
+    });
   </script>
+
+
+<footer class="bg-[var(--brown)] text-white pt-10">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm pb-10 border-b border-[var(--cream)]">
+    <!-- Section 1: About -->
+    <div>
+      <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Lay In Root</h4>
+      <p class="text-white">
+        Discover real reader reviews, rate books, and share your thoughts with the world.
+        Built by readers, for readers.
+      </p>
+    </div>
+    <!-- Section 2: Contact Info -->
+    <div>
+      <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Contact</h4>
+      <p class="text-white">123 Review Ave<br>Booktown, BK 45678</p>
+      <p class="mt-2 text-white">
+        Email:
+        <a href="mailto:contact@layinroot.com" class="text-[var(--green)] hover:underline">
+          contact@layinroot.com
+        </a>
+      </p>
+    </div>
+    <!-- Section 3: Follow Us -->
+    <div>
+      <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Follow Us</h4>
+      <ul class="space-y-1 text-white">
+        <li><a href="#" class="hover:text-[var(--green)]">Facebook</a></li>
+        <li><a href="#" class="hover:text-[var(--green)]">Twitter</a></li>
+        <li><a href="#" class="hover:text-[var(--green)]">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center text-white text-xs py-4 bg-[var(--brown)]">
+    &copy; 2025 Lay In Root. All rights reserved.
+  </div>
+</footer>
 
 </body>
 </html>
