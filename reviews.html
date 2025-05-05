@@ -122,10 +122,21 @@
     <div class="raindrop"></div>
   </div>
 
-  <!-- Navbar -->
+  <!-- Navbar-->
   <nav class="bg-[var(--brown)] text-white shadow-md p-4 flex justify-between items-center">
-    <img src="https://media.discordapp.net/attachments/1368533585199632445/1368551577132077096/c0198911-119e-47c0-91f6-edb66ebe897d.jpg?ex=6818a27a&is=681750fa&hm=11384c24a03070251df9fcc6822391f9dff6cec311e6095ca8ce8e6c6e83ac87&=&format=webp&width=1240&height=789" alt="Lay In Root Logo" class="h-12"> 
-    <div class="space-x-4">
+    <!-- Left side: Logo -->
+    <div class="flex items-center gap-4">
+      <img src="https://media.discordapp.net/attachments/1368533585199632445/1368551577132077096/c0198911-119e-47c0-91f6-edb66ebe897d.jpg?ex=6818a27a&is=681750fa&hm=11384c24a03070251df9fcc6822391f9dff6cec311e6095ca8ce8e6c6e83ac87&=&format=webp&width=1240&height=789" alt="Lay In Root Logo" class="h-12">
+    </div>
+  
+    <!-- Right side: Navigation Items -->
+    <div class="flex items-center gap-6">
+      <!-- Search (highlighted) -->
+      <div class="bg-[var(--cream)] px-2 py-1 rounded shadow-sm border border-[var(--brown)]">
+        <input type="text" placeholder="Search..." class="bg-transparent text-[var(--brown)] text-sm focus:outline-none" />
+      </div>
+  
+      <!-- Navigation links -->
       <a href="index.html" class="hover:text-[var(--green)]">Home</a>
       <a href="reviews.html" class="hover:text-[var(--green)]">Reviews</a>
       <a href="submit.html" class="hover:text-[var(--green)]">Submit</a>

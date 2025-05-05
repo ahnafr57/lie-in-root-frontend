@@ -14,11 +14,9 @@
       --text-dark: #2e2e2e;
     }
 
-    /* 3D Effect */
     .card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .card:hover {
       transform: translateY(-10px) rotateY(10deg);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -26,23 +24,17 @@
 
     .button-3d {
       transition: transform 0.2s ease, box-shadow 0.3s ease;
-    }
-
-    .button-3d:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Button Color */
-    .button-3d {
       background-color: var(--cream);
       color: var(--brown);
       padding: 10px 20px;
       border-radius: 30px;
       font-weight: bold;
     }
+    .button-3d:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
 
-    /* 3D Perspective on the whole section */
     .perspective {
       perspective: 1000px;
     }
@@ -51,7 +43,6 @@
       transform: rotateY(15deg);
     }
 
-    /* Rain Effect */
     .rain {
       position: fixed;
       top: 0;
@@ -62,35 +53,22 @@
       z-index: -1;
       overflow: hidden;
     }
-
     .raindrop {
       position: absolute;
       top: -10px;
       width: 2px;
       height: 10px;
-      background-color: var(--brown); /* Updated color to brown */
+      background-color: var(--brown);
       animation: rain 1.5s linear infinite;
-      opacity: 0.2; /* Reduced opacity */
+      opacity: 0.15;
     }
-
     @keyframes rain {
       to {
-        transform: translate(200px, 100vh); /* Diagonal direction from top-right to bottom-left */
+        transform: translate(200px, 100vh);
       }
     }
-
-    /* Adjusting the amount of raindrops */
-    .raindrop:nth-child(odd) {
-      animation-duration: 1.8s;
-      left: 10%;
-    }
-
-    .raindrop:nth-child(even) {
-      animation-duration: 2s;
-      left: 50%;
-    }
-
-    /* Add more raindrops */
+    .raindrop:nth-child(odd) { animation-duration: 1.8s; left: 10%; }
+    .raindrop:nth-child(even) { animation-duration: 2s; left: 50%; }
     .raindrop:nth-child(3) { left: 90%; animation-duration: 1.6s; }
     .raindrop:nth-child(4) { left: 30%; animation-duration: 1.7s; }
     .raindrop:nth-child(5) { left: 60%; animation-duration: 1.5s; }
@@ -99,40 +77,32 @@
     .raindrop:nth-child(8) { left: 40%; animation-duration: 1.9s; }
     .raindrop:nth-child(9) { left: 80%; animation-duration: 2s; }
     .raindrop:nth-child(10) { left: 15%; animation-duration: 1.6s; }
-
-    /* Adjusting the rain opacity to avoid interference with content */
-    .raindrop {
-      opacity: 0.15;
-    }
-
   </style>
 </head>
 <body class="bg-[var(--cream)] text-[var(--text-dark)] font-sans">
 
   <!-- Rain Effect -->
   <div class="rain">
-    <!-- Generate a number of raindrops -->
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
-    <div class="raindrop"></div>
+    <div class="raindrop"></div><div class="raindrop"></div><div class="raindrop"></div><div class="raindrop"></div>
+    <div class="raindrop"></div><div class="raindrop"></div><div class="raindrop"></div><div class="raindrop"></div>
+    <div class="raindrop"></div><div class="raindrop"></div><div class="raindrop"></div><div class="raindrop"></div>
+    <div class="raindrop"></div><div class="raindrop"></div><div class="raindrop"></div>
   </div>
 
-  <!-- Navbar -->
   <nav class="bg-[var(--brown)] text-white shadow-md p-4 flex justify-between items-center">
-    <img src="https://media.discordapp.net/attachments/1368533585199632445/1368551577132077096/c0198911-119e-47c0-91f6-edb66ebe897d.jpg?ex=6818a27a&is=681750fa&hm=11384c24a03070251df9fcc6822391f9dff6cec311e6095ca8ce8e6c6e83ac87&=&format=webp&width=1240&height=789" alt="Lay In Root Logo" class="h-12"> 
-    <div class="space-x-4">
+    <!-- Left side: Logo -->
+    <div class="flex items-center gap-4">
+      <img src="https://media.discordapp.net/attachments/1368533585199632445/1368551577132077096/c0198911-119e-47c0-91f6-edb66ebe897d.jpg?ex=6818a27a&is=681750fa&hm=11384c24a03070251df9fcc6822391f9dff6cec311e6095ca8ce8e6c6e83ac87&=&format=webp&width=1240&height=789" alt="Lay In Root Logo" class="h-12">
+    </div>
+  
+    <!-- Right side: Navigation Items -->
+    <div class="flex items-center gap-6">
+      <!-- Search (highlighted) -->
+      <div class="bg-[var(--cream)] px-2 py-1 rounded shadow-sm border border-[var(--brown)]">
+        <input type="text" placeholder="Search..." class="bg-transparent text-[var(--brown)] text-sm focus:outline-none" />
+      </div>
+  
+      <!-- Navigation links -->
       <a href="index.html" class="hover:text-[var(--green)]">Home</a>
       <a href="reviews.html" class="hover:text-[var(--green)]">Reviews</a>
       <a href="submit.html" class="hover:text-[var(--green)]">Submit</a>
@@ -140,130 +110,137 @@
     </div>
   </nav>
   
-  <!-- Hero Section with 3D Effect -->
+  <!-- Hero Section -->
   <header class="text-center py-20 bg-gradient-to-r from-[var(--brown)] to-[var(--gold)] text-white">
     <h2 class="text-5xl font-extrabold text-[var(--brown)] rotate-3d">Where Books Speak for Themselves</h2>
     <p class="mt-4 text-lg text-[var(--brown)]">Read. Rate. Review. Discover your next favorite read through the eyes of real readers.</p>
+
+    <!-- Large Search Box -->
+    <div class="mt-6">
+      <input type="text" placeholder="Search for books, authors, or genres..." class="w-3/4 max-w-xl px-4 py-3 rounded-lg bg-[var(--cream)] text-[var(--brown)] focus:outline-none text-lg border-2 border-[var(--green)]" />
+    </div>
+
     <a href="reviews.html" class="mt-6 inline-block button-3d hover:bg-[var(--green)] hover:text-white">Browse Reviews</a>
   </header>
 
- <!-- Featured Section with 3D Cards -->
+   <!-- Featured Section with 3D Cards -->
 <section class="max-w-4xl mx-auto p-6 perspective">
-  <h3 class="text-2xl font-semibold mb-4 text-[var(--dark)]">Featured Reviews</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    
-    <!-- Featured Review Card 1 -->
-    <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
-      <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1602190253l/52578297.jpg" alt="The Midnight Library" class="w-full h-48 object-cover rounded-md mb-2">
-      <h4 class="text-xl font-bold text-[var(--dark)]">The Midnight Library</h4>
-      <p class="text-sm text-gray-600 mb-2">by Matt Haig</p>
-      <p class="text-gray-700">"A thought-provoking journey through regret and possibility..."</p>
-      <div class="mt-2 text-[var(--sepia)]">★★★★★</div>
-    </div>
-
-    <!-- Featured Review Card 2 -->
-    <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
-      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597695864i/54493401.jpg" alt="Project Hail Mary" class="w-full h-48 object-cover rounded-md mb-2">
-      <h4 class="text-xl font-bold text-[var(--dark)]">Project Hail Mary</h4>
-      <p class="text-sm text-gray-600 mb-2">by Andy Weir</p>
-      <p class="text-gray-700">"A scientifically satisfying and emotionally gripping read."</p>
-      <div class="mt-2 text-[var(--sepia)]">★★★★☆</div>
-    </div>
-
-    <!-- Featured Manhwa Review 1 -->
-    <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
-      <img src="https://upload.wikimedia.org/wikipedia/en/6/6c/Solo_Leveling_Volume_1_Cover.jpg" alt="Solo Leveling" class="w-full h-48 object-cover rounded-md mb-2">
-      <h4 class="text-xl font-bold text-[var(--dark)]">Solo Leveling</h4>
-      <p class="text-sm text-gray-600 mb-2">by Chu-Gong</p>
-      <p class="text-gray-700">"A thrilling journey of a hunter's rise to power. Non-stop action!"</p>
-      <div class="mt-2 text-[var(--sepia)]">★★★★★</div>
-    </div>
-
-    <!-- Featured Manhwa Review 2 -->
-    <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
-      <img src="https://m.media-amazon.com/images/M/MV5BODVjODVhNjgtZWZkNy00ODViLTgwMGYtZmU0ZTNkZTI3N2M5XkEyXkFqcGc@._V1_.jpg" alt="The God of High School" class="w-full h-48 object-cover rounded-md mb-2">
-      <h4 class="text-xl font-bold text-[var(--dark)]">The God of High School</h4>
-      <p class="text-sm text-gray-600 mb-2">by Yongje Park</p>
-      <p class="text-gray-700">"An intense martial arts manhwa with a blend of fantasy and action."</p>
-      <div class="mt-2 text-[var(--sepia)]">★★★★☆</div>
-    </div>
-
-    <!-- Featured Manhwa Review 3 -->
-    <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
-      <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Tower_of_God_Volume_1_Cover.jpg" alt="Tower of God" class="w-full h-48 object-cover rounded-md mb-2">
-      <h4 class="text-xl font-bold text-[var(--dark)]">Tower of God</h4>
-      <p class="text-sm text-gray-600 mb-2">by SIU</p>
-      <p class="text-gray-700">"A captivating story about climbing a mysterious tower with high stakes."</p>
-      <div class="mt-2 text-[var(--sepia)]">★★★★★</div>
-    </div>
-
-    <!-- Featured Manhwa Review 4 -->
-    <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
-      <img src="https://upload.wikimedia.org/wikipedia/en/0/07/Noblesse_%28manhwa%29_Cover.jpg" alt="Noblesse" class="w-full h-48 object-cover rounded-md mb-2">
-      <h4 class="text-xl font-bold text-[var(--dark)]">Noblesse</h4>
-      <p class="text-sm text-gray-600 mb-2">by Son Jeho & Lee Kwangsu</p>
-      <p class="text-gray-700">"An action-packed story of a powerful nobleman coming back to life."</p>
-      <div class="mt-2 text-[var(--sepia)]">★★★★☆</div>
-    </div>
-
-    <!-- Featured Manhwa Review 5 -->
-    <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
-      <img src="https://upload.wikimedia.org/wikipedia/en/1/17/Lookism_Volume_1_Cover.jpg" alt="Lookism" class="w-full h-48 object-cover rounded-md mb-2">
-      <h4 class="text-xl font-bold text-[var(--dark)]">Lookism</h4>
-      <p class="text-sm text-gray-600 mb-2">by Park Tae-jun</p>
-      <p class="text-gray-700">"A manhwa exploring the concept of beauty and self-worth in society."</p>
-      <div class="mt-2 text-[var(--sepia)]">★★★★☆</div>
-    </div>
-
-    <!-- Featured Manhwa Review 6 -->
-    <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
-      <img src="https://upload.wikimedia.org/wikipedia/en/0/0d/Kim_Carnby_and_Hwang_Young-chan_-_Sweet_Home_vol._1_%282020%2C_Wisdom_House%29_book_cover.jpg" alt="Sweet Home" class="w-full h-48 object-cover rounded-md mb-2">
-      <h4 class="text-xl font-bold text-[var(--dark)]">Sweet Home</h4>
-      <p class="text-sm text-gray-600 mb-2">by Carnby Kim & Youngchan Hwang</p>
-      <p class="text-gray-700">"A survival horror manhwa set in a world where monsters take over."</p>
-      <div class="mt-2 text-[var(--sepia)]">★★★★★</div>
-    </div>
-
-  </div>
-</section>
-
-
-  <footer class="bg-[var(--brown)] text-white pt-10">
-    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm pb-10 border-b border-[var(--cream)]">
-      <!-- Section 1: About -->
-      <div>
-        <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Lay In Root</h4>
-        <p class="text-white">
-          Discover real reader reviews, rate books, and share your thoughts with the world.
-          Built by readers, for readers.
-        </p>
+    <h3 class="text-2xl font-semibold mb-4 text-[var(--dark)]">Featured Reviews</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Featured Review Card 1 -->
+      <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1602190253l/52578297.jpg" alt="The Midnight Library" class="w-full h-48 object-cover rounded-md mb-2">
+        <h4 class="text-xl font-bold text-[var(--dark)]">The Midnight Library</h4>
+        <p class="text-sm text-gray-600 mb-2">by Matt Haig</p>
+        <p class="text-gray-700">"A thought-provoking journey through regret and possibility..."</p>
+        <div class="mt-2 text-[var(--sepia)]">★★★★★</div>
       </div>
-      <!-- Section 2: Contact Info -->
-      <div>
-        <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Contact</h4>
-        <p class="text-white">123 Review Ave<br>Booktown, BK 45678</p>
-        <p class="mt-2 text-white">
-          Email:
-          <a href="mailto:contact@layinroot.com" class="text-[var(--green)] hover:underline">
-            contact@layinroot.com
-          </a>
-        </p>
-      </div>
-      <!-- Section 3: Follow Us -->
-      <div>
-        <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Follow Us</h4>
-        <ul class="space-y-1 text-white">
-          <li><a href="#" class="hover:text-[var(--green)]">Facebook</a></li>
-          <li><a href="#" class="hover:text-[var(--green)]">Twitter</a></li>
-          <li><a href="#" class="hover:text-[var(--green)]">Instagram</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="text-center text-white text-xs py-4 bg-[var(--brown)]">
-      &copy; 2025 Lay In Root. All rights reserved.
-    </div>
-  </footer>
   
-</body>
-</html>
+      <!-- Featured Review Card 2 -->
+      <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597695864i/54493401.jpg" alt="Project Hail Mary" class="w-full h-48 object-cover rounded-md mb-2">
+        <h4 class="text-xl font-bold text-[var(--dark)]">Project Hail Mary</h4>
+        <p class="text-sm text-gray-600 mb-2">by Andy Weir</p>
+        <p class="text-gray-700">"A scientifically satisfying and emotionally gripping read."</p>
+        <div class="mt-2 text-[var(--sepia)]">★★★★☆</div>
+      </div>
+  
+      <!-- Featured Manhwa Review 1 -->
+      <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/6c/Solo_Leveling_Volume_1_Cover.jpg" alt="Solo Leveling" class="w-full h-48 object-cover rounded-md mb-2">
+        <h4 class="text-xl font-bold text-[var(--dark)]">Solo Leveling</h4>
+        <p class="text-sm text-gray-600 mb-2">by Chu-Gong</p>
+        <p class="text-gray-700">"A thrilling journey of a hunter's rise to power. Non-stop action!"</p>
+        <div class="mt-2 text-[var(--sepia)]">★★★★★</div>
+      </div>
+  
+      <!-- Featured Manhwa Review 2 -->
+      <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="https://m.media-amazon.com/images/M/MV5BODVjODVhNjgtZWZkNy00ODViLTgwMGYtZmU0ZTNkZTI3N2M5XkEyXkFqcGc@._V1_.jpg" alt="The God of High School" class="w-full h-48 object-cover rounded-md mb-2">
+        <h4 class="text-xl font-bold text-[var(--dark)]">The God of High School</h4>
+        <p class="text-sm text-gray-600 mb-2">by Yongje Park</p>
+        <p class="text-gray-700">"An intense martial arts manhwa with a blend of fantasy and action."</p>
+        <div class="mt-2 text-[var(--sepia)]">★★★★☆</div>
+      </div>
+  
+      <!-- Featured Manhwa Review 3 -->
+      <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Tower_of_God_Volume_1_Cover.jpg" alt="Tower of God" class="w-full h-48 object-cover rounded-md mb-2">
+        <h4 class="text-xl font-bold text-[var(--dark)]">Tower of God</h4>
+        <p class="text-sm text-gray-600 mb-2">by SIU</p>
+        <p class="text-gray-700">"A captivating story about climbing a mysterious tower with high stakes."</p>
+        <div class="mt-2 text-[var(--sepia)]">★★★★★</div>
+      </div>
+  
+      <!-- Featured Manhwa Review 4 -->
+      <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/07/Noblesse_%28manhwa%29_Cover.jpg" alt="Noblesse" class="w-full h-48 object-cover rounded-md mb-2">
+        <h4 class="text-xl font-bold text-[var(--dark)]">Noblesse</h4>
+        <p class="text-sm text-gray-600 mb-2">by Son Jeho & Lee Kwangsu</p>
+        <p class="text-gray-700">"An action-packed story of a powerful nobleman coming back to life."</p>
+        <div class="mt-2 text-[var(--sepia)]">★★★★☆</div>
+      </div>
+  
+      <!-- Featured Manhwa Review 5 -->
+      <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/17/Lookism_Volume_1_Cover.jpg" alt="Lookism" class="w-full h-48 object-cover rounded-md mb-2">
+        <h4 class="text-xl font-bold text-[var(--dark)]">Lookism</h4>
+        <p class="text-sm text-gray-600 mb-2">by Park Tae-jun</p>
+        <p class="text-gray-700">"A manhwa exploring the concept of beauty and self-worth in society."</p>
+        <div class="mt-2 text-[var(--sepia)]">★★★★☆</div>
+      </div>
+  
+      <!-- Featured Manhwa Review 6 -->
+      <div class="card bg-[var(--cream)] border border-gray-200 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/0d/Kim_Carnby_and_Hwang_Young-chan_-_Sweet_Home_vol._1_%282020%2C_Wisdom_House%29_book_cover.jpg" alt="Sweet Home" class="w-full h-48 object-cover rounded-md mb-2">
+        <h4 class="text-xl font-bold text-[var(--dark)]">Sweet Home</h4>
+        <p class="text-sm text-gray-600 mb-2">by Carnby Kim & Youngchan Hwang</p>
+        <p class="text-gray-700">"A survival horror manhwa set in a world where monsters take over."</p>
+        <div class="mt-2 text-[var(--sepia)]">★★★★★</div>
+      </div>
+  
+    </div>
+  </section>
+  
+  
+    <footer class="bg-[var(--brown)] text-white pt-10">
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm pb-10 border-b border-[var(--cream)]">
+        <!-- Section 1: About -->
+        <div>
+          <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Lay In Root</h4>
+          <p class="text-white">
+            Discover real reader reviews, rate books, and share your thoughts with the world.
+            Built by readers, for readers.
+          </p>
+        </div>
+        <!-- Section 2: Contact Info -->
+        <div>
+          <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Contact</h4>
+          <p class="text-white">123 Review Ave<br>Booktown, BK 45678</p>
+          <p class="mt-2 text-white">
+            Email:
+            <a href="mailto:contact@layinroot.com" class="text-[var(--green)] hover:underline">
+              contact@layinroot.com
+            </a>
+          </p>
+        </div>
+        <!-- Section 3: Follow Us -->
+        <div>
+          <h4 class="text-[var(--green)] font-semibold text-lg mb-2">Follow Us</h4>
+          <ul class="space-y-1 text-white">
+            <li><a href="#" class="hover:text-[var(--green)]">Facebook</a></li>
+            <li><a href="#" class="hover:text-[var(--green)]">Twitter</a></li>
+            <li><a href="#" class="hover:text-[var(--green)]">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="text-center text-white text-xs py-4 bg-[var(--brown)]">
+        &copy; 2025 Lay In Root. All rights reserved.
+      </div>
+    </footer>
+    
+  </body>
+  </html>
+  
